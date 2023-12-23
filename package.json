@@ -1,0 +1,22 @@
+{
+  "name": "custom_redux",
+  "version": "1.0.0",
+  "description": "custom redux implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psp3075/custom_redux.git"
+  },
+  "author": "PAVAN PATIL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psp3075/custom_redux/issues"
+  },
+  "homepage": "https://github.com/psp3075/custom_redux#readme",
+  "dependencies": {
+    "redux": "^5.0.0"
+  }
+}
