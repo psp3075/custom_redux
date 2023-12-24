@@ -1,19 +1,27 @@
-// const { createStore } = require("redux");
+const { combineReducers } = require("redux");
 const { createStore } = require("./customRedux");
-const videos = require("./reducers/videos");
+const videos = require("./reducers/videos.js");
+const users = require("./reducers/users.js");
 
 const initialState = {
-  data: [
-    {
-      id: 1,
-      title: "Flat Array question",
-      link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat",
-    },
-  ],
+  videos: {
+    data: [
+      {
+        id: 1,
+        title: "Flat Array question",
+        link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat",
+      },
+    ],
+  },
 };
 
+const rootReducer = combineReducers({
+  videos,
+  users,
+});
+
 //createStore(reducer,preloadedState,enhancer)
-const store = createStore(videos, initialState);
+const store = createStore(rootReducer, initialState);
 /**
  * {
  * getState,
@@ -31,6 +39,9 @@ store.subscribe(() => {
   console.log("listener called");
 });
 
+//to watch store changes
+// store.subscribe(console.log("listener called"));
+
 //to trigger store changes
 store.dispatch({
   type: "ADD_VIDEO",
@@ -41,15 +52,15 @@ store.dispatch({
   },
 });
 
-//console.log("second call", store.getState())
+// console.log("second call\n", store.getState());
 
-store.dispatch({
-  type: "ADD_VIDEO",
-  payload: {
-    id: 3,
-    title: "Prototype question",
-    link: "https://developer.mozilla.org/en-US/docs/Glossary/Prototype",
-  },
-});
+// store.dispatch({
+//   type: "ADD_VIDEO",
+//   payload: {
+//     id: 3,
+//     title: "Prototype question",
+//     link: "https://developer.mozilla.org/en-US/docs/Glossary/Prototype",
+//   },
+// });
 
 //console.log("third call", store.getState())
