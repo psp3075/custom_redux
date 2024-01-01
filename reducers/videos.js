@@ -10,6 +10,7 @@ function videos(
 ) {
   switch (action.type) {
     case VIDEOS_ACTIONS.ADD_VIDEO:
+      // return undefined;
       return {
         ...state,
         data: [...state.data, action.payload],

@@ -1,4 +1,5 @@
-const { combineReducers } = require("redux");
+// const { combineReducers } = require("redux");
+const { combineReducers } = require("./customRedux");
 const { createStore } = require("./customRedux");
 const videos = require("./reducers/videos.js");
 const users = require("./reducers/users.js");
@@ -15,6 +16,29 @@ const initialState = {
   },
 };
 
+/**
+ * {
+ * users : {data:[]} => users(state['users], action) => previous state or updatedState
+ * videos : {data:[]} => videos(state['videos], action) => previous state or updatedState
+ * }
+ *
+ * combineReducers()=>function => function(state,action)
+ *
+ * rootReducer(state, action){
+ * iterate over individual reducers
+ * pass state+action as argument
+ * return the updated or previous individual state slices
+ *
+ * ACTION => ADD_VIDEO
+ * users(state["users"],action)=> previousState
+ * videos(state["videos"],action)=> updatedState
+ *
+ * return {
+ * users,  //previousState
+ * videos //updatedState
+ * }
+ * }
+ */
 const rootReducer = combineReducers({
   videos,
   users,
@@ -32,7 +56,7 @@ const store = createStore(rootReducer, initialState);
  */
 
 //to checkthe initial value of your store
-console.log("first call store.getState\n", store.getState());
+console.log("==========>first call store.getState\n", store.getState());
 
 //to watch store changes
 store.subscribe(() => {
@@ -52,15 +76,15 @@ store.dispatch({
   },
 });
 
-// console.log("second call\n", store.getState());
+console.log("==========>second call\n", store.getState());
 
-// store.dispatch({
-//   type: "ADD_VIDEO",
-//   payload: {
-//     id: 3,
-//     title: "Prototype question",
-//     link: "https://developer.mozilla.org/en-US/docs/Glossary/Prototype",
-//   },
-// });
+store.dispatch({
+  type: "ADD_VIDEO",
+  payload: {
+    id: 3,
+    title: "Prototype question",
+    link: "https://developer.mozilla.org/en-US/docs/Glossary/Prototype",
+  },
+});
 
-//console.log("third call", store.getState())
+console.log("==========>third call", store.getState());
